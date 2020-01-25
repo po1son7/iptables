@@ -148,6 +148,29 @@ Add_forwarding(){
 	转发类型\t: ${Green_font_prefix}${forwarding_type}${Font_color_suffix}
 ——————————————————————————————\n"
 }
+Add_forwarding_Masquerade(){
+	check_iptables
+	Set_Config
+	local_port=$(echo ${local_port} | sed 's/-/:/g')
+	forwarding_port_1=$(echo ${forwarding_port} | sed 's/-/:/g')
+	if [[ ${forwarding_type} == "TCP" ]]; then
+		Add_iptables_Masquerade "tcp"
+	elif [[ ${forwarding_type} == "UDP" ]]; then
+		Add_iptables_Masquerade "udp"
+	elif [[ ${forwarding_type} == "TCP+UDP" ]]; then
+		Add_iptables_Masquerade "tcp"
+		Add_iptables_Masquerade "udp"
+	fi
+	Save_iptables
+	clear && echo && echo -e "——————————————————————————————
+	iptables 端口转发规则配置完成 !\n
+	本地监听端口    : ${Green_font_prefix}${local_port}${Font_color_suffix}
+	服务器 IP\t: ${Green_font_prefix}${local_ip}${Font_color_suffix}\n
+	欲转发的端口    : ${Green_font_prefix}${forwarding_port_1}${Font_color_suffix}
+	欲转发 IP\t: ${Green_font_prefix}${forwarding_ip}${Font_color_suffix}
+	转发类型\t: ${Green_font_prefix}${forwarding_type}${Font_color_suffix}
+——————————————————————————————\n"
+}
 View_forwarding(){
 	check_iptables
 	forwarding_text=$(iptables -t nat -vnL PREROUTING|tail -n +3)
@@ -299,7 +322,7 @@ case "$num" in
 	Del_forwarding
 	;;
 	6)
-	Add_iptables_Masquerade
+	Add_forwarding_Masquerade
 	;;
 	*)
 	echo "请输入正确数字 [0-5]"
