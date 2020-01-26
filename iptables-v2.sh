@@ -5,11 +5,10 @@ export PATH
 #=================================================
 #	System Required: CentOS/Debian/Ubuntu
 #	Description: iptables Port forwarding
-#	Version: 1.1.1
-#	Author: Toyo
-#	Blog: https://doub.io/wlzy-20/
+#	Version: 1.2
+#	Original Author: Toyo
 #=================================================
-sh_ver="1.1.1"
+sh_ver="1.2"
 
 Green_font_prefix="\033[32m" && Red_font_prefix="\033[31m" && Green_background_prefix="\033[42;37m" && Red_background_prefix="\033[41;37m" && Font_color_suffix="\033[0m"
 Info="${Green_font_prefix}[信息]${Font_color_suffix}"
@@ -283,7 +282,6 @@ Set_iptables(){
 }
 check_sys
 echo && echo -e " iptables 端口转发一键管理脚本 ${Red_font_prefix}[v${sh_ver}]${Font_color_suffix}
-  -- Toyo | doub.io/wlzy-20 --
 ————————————
  ${Green_font_prefix}1.${Font_color_suffix} 安装 iptables
  ${Green_font_prefix}2.${Font_color_suffix} 清空 iptables 端口转发
