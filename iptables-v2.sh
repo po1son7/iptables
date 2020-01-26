@@ -295,7 +295,7 @@ echo && echo -e " iptables 端口转发一键管理脚本 ${Red_font_prefix}[v${
  ${Green_font_prefix}6.${Font_color_suffix} MASQUERADE 源地址转换转发
 ————————————
 注意：初次使用前请请务必执行 ${Green_font_prefix}1. 安装 iptables${Font_color_suffix}(不仅仅是安装，开启docker宿主机转发)" && echo
-read -e -p " 请输入数字 [0-5]:" num
+read -e -p " 请输入数字 [1-6]:" num
 case "$num" in
 	1)
 	install_iptables
