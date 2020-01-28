@@ -80,8 +80,7 @@ Set_local_port(){
 	echo && echo -e "	本地监听端口 : ${Red_font_prefix}${local_port}${Font_color_suffix}" && echo
 }
 Set_local_ip(){
-	read -e -p "请输入 本服务器的 网卡IP(回车自动检测 eth0 的IP):" 
-	local_ip
+	read -e -p "请输入 本服务器的 网卡IP(回车自动检测 eth0 的IP):" local_ip
 	if [[ -z "${local_ip}" ]]; then
 		local_ip=$(ifconfig eth0 | awk -F "[^0-9.]+" 'NR==2{print $2}')
 		if [[ -z "${local_ip}" ]]; then
