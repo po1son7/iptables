@@ -66,9 +66,9 @@ do_iptables() {
             exit 1
         fi
     fi
-    iptables -P FORWARD ACCEPT
 
     echo -e "${CMSG}[信息] 写入 IP 转发参数中！ ${CEND}"
+    iptables -P FORWARD ACCEPT
     sysctl -w "net.ipv4.ip_forward=1"
     sysctl -w "net.ipv6.conf.all.forwarding=1"
     sysctl -w "net.ipv6.conf.default.forwarding=1"
