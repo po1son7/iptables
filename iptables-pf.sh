@@ -147,23 +147,23 @@ create_iptables() {
     if [[ ${FORWARD_TYPE} == "1" ]]; then
         iptables -t nat -A PREROUTING -p tcp -m tcp --dport "${LOCAL_PORT_IPT}" -j DNAT --to-destination "${REMOTE_ADDR}:${REMOTE_PORT}"
         echo "iptables -t nat -A PREROUTING -p tcp -m tcp --dport ${LOCAL_PORT_IPT} -j DNAT --to-destination ${REMOTE_ADDR}:${REMOTE_PORT}"
-        iptables -t nat -A POSTROUTING -d "${LOCAL_ADDR}/32" -p tcp -m tcp --dport "${REMOTE_PORT_IPT}" -j SNAT --to-source "${LOCAL_ADDR}"
-        echo "iptables -t nat -A POSTROUTING -d ${LOCAL_ADDR}/32 -p tcp -m tcp --dport ${REMOTE_PORT_IPT} -j SNAT --to-source ${LOCAL_ADDR}"
+        iptables -t nat -A POSTROUTING -d "${REMOTE_ADDR}/32" -p tcp -m tcp --dport "${REMOTE_PORT_IPT}" -j SNAT --to-source "${LOCAL_ADDR}"
+        echo "iptables -t nat -A POSTROUTING -d ${REMOTE_ADDR}/32 -p tcp -m tcp --dport ${REMOTE_PORT_IPT} -j SNAT --to-source ${LOCAL_ADDR}"
     elif [[ ${FORWARD_TYPE} == "2" ]]; then
         iptables -t nat -A PREROUTING -p udp -m udp --dport "${LOCAL_PORT_IPT}" -j DNAT --to-destination "${REMOTE_ADDR}:${REMOTE_PORT}"
         echo "iptables -t nat -A PREROUTING -p udp -m udp --dport ${LOCAL_PORT_IPT} -j DNAT --to-destination ${REMOTE_ADDR}:${REMOTE_PORT}"
-        iptables -t nat -A POSTROUTING -d "${LOCAL_ADDR}/32" -p udp -m udp --dport "${REMOTE_PORT_IPT}" -j SNAT --to-source "${LOCAL_ADDR}"
-        echo "iptables -t nat -A POSTROUTING -d ${LOCAL_ADDR}/32 -p udp -m udp --dport ${REMOTE_PORT_IPT} -j SNAT --to-source ${LOCAL_ADDR}"
+        iptables -t nat -A POSTROUTING -d "${REMOTE_ADDR}/32" -p udp -m udp --dport "${REMOTE_PORT_IPT}" -j SNAT --to-source "${LOCAL_ADDR}"
+        echo "iptables -t nat -A POSTROUTING -d ${REMOTE_ADDR}/32 -p udp -m udp --dport ${REMOTE_PORT_IPT} -j SNAT --to-source ${LOCAL_ADDR}"
     elif [[ ${FORWARD_TYPE} == "3" ]]; then
         iptables -t nat -A PREROUTING -p tcp -m tcp --dport "${LOCAL_PORT_IPT}" -j DNAT --to-destination "${REMOTE_ADDR}:${REMOTE_PORT}"
         echo "iptables -t nat -A PREROUTING -p tcp -m tcp --dport ${LOCAL_PORT_IPT} -j DNAT --to-destination ${REMOTE_ADDR}:${REMOTE_PORT}"
-        iptables -t nat -A POSTROUTING -d "${LOCAL_ADDR}/32" -p tcp -m tcp --dport "${REMOTE_PORT_IPT}" -j SNAT --to-source "${LOCAL_ADDR}"
-        echo "iptables -t nat -A POSTROUTING -d ${LOCAL_ADDR}/32 -p tcp -m tcp --dport ${REMOTE_PORT_IPT} -j SNAT --to-source ${LOCAL_ADDR}"
+        iptables -t nat -A POSTROUTING -d "${REMOTE_ADDR}/32" -p tcp -m tcp --dport "${REMOTE_PORT_IPT}" -j SNAT --to-source "${LOCAL_ADDR}"
+        echo "iptables -t nat -A POSTROUTING -d ${REMOTE_ADDR}/32 -p tcp -m tcp --dport ${REMOTE_PORT_IPT} -j SNAT --to-source ${LOCAL_ADDR}"
 
         iptables -t nat -A PREROUTING -p udp -m udp --dport "${LOCAL_PORT_IPT}" -j DNAT --to-destination "${REMOTE_ADDR}:${REMOTE_PORT}"
         echo "iptables -t nat -A PREROUTING -p udp -m udp --dport ${LOCAL_PORT_IPT} -j DNAT --to-destination ${REMOTE_ADDR}:${REMOTE_PORT}"
-        iptables -t nat -A POSTROUTING -d "${LOCAL_ADDR}/32" -p udp -m udp --dport "${REMOTE_PORT_IPT}" -j SNAT --to-source "${LOCAL_ADDR}"
-        echo "iptables -t nat -A POSTROUTING -d ${LOCAL_ADDR}/32 -p udp -m udp --dport ${REMOTE_PORT_IPT} -j SNAT --to-source ${LOCAL_ADDR}"
+        iptables -t nat -A POSTROUTING -d "${REMOTE_ADDR}/32" -p udp -m udp --dport "${REMOTE_PORT_IPT}" -j SNAT --to-source "${LOCAL_ADDR}"
+        echo "iptables -t nat -A POSTROUTING -d ${REMOTE_ADDR}/32 -p udp -m udp --dport ${REMOTE_PORT_IPT} -j SNAT --to-source ${LOCAL_ADDR}"
     fi
 
     echo
@@ -261,7 +261,7 @@ echo -e "端口转发管理脚本 ${CRED}[v${VERSION}]${CEND}
 
 "
 
-read -e -p "请输入数字 [0-4]：" code
+read -e -p "请输入数字 [0-5]：" code
 case "$code" in
     0)
         do_iptables
